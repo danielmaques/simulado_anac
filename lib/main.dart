@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:simulados_anac/core/theme/app_theme.dart';
+
+import 'app/home/home_module.dart';
+import 'core/theme/theme_manager.dart';
 
 void main() {
   return runApp(ModularApp(module: AppModule(), child: const AppWidget()));
@@ -11,23 +15,32 @@ class AppWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      title: 'My Smart App',
-      debugShowCheckedModeBanner: false,
-      themeMode: ThemeMode.system,
-      theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
-      routerConfig: Modular.routerConfig,
-    ); //added by extension
+    return BlocProvider(
+      create: (_) => Modular.get<ThemeCubit>(),
+      child: BlocBuilder<ThemeCubit, ThemeMode>(
+        builder: (context, themeMode) {
+          return MaterialApp.router(
+            title: 'My Smart App',
+            debugShowCheckedModeBanner: false,
+            themeMode: themeMode,
+            theme: AppTheme.lightTheme,
+            darkTheme: AppTheme.darkTheme,
+            routerConfig: Modular.routerConfig,
+          );
+        },
+      ),
+    );
   }
 }
 
 class AppModule extends Module {
   @override
-  void binds(i) {}
+  void binds(i) {
+    i.addSingleton(ThemeCubit.new);
+  }
 
   @override
   void routes(r) {
-    r.child('/', child: (context) => Container());
+    r.module('/', module: HomeModule());
   }
 }

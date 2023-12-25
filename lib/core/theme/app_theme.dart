@@ -8,7 +8,8 @@ class AppTheme {
     useMaterial3: true,
     fontFamily: 'Poppins',
     brightness: Brightness.light,
-    primaryColorLight: const Color(0XFFFA7240),
+    primaryColor: const Color(0XFFFA7240),
+    cardColor: Colors.white,
     scaffoldBackgroundColor: const Color(0xFFF3F2F8),
     textTheme: AppTextTheme.lightTextTheme,
   );
@@ -17,7 +18,8 @@ class AppTheme {
     useMaterial3: true,
     fontFamily: 'Poppins',
     brightness: Brightness.dark,
-    primaryColorLight: const Color(0XFFFA7240),
+    primaryColor: const Color(0XFFFA7240),
+    cardColor: Colors.black,
     scaffoldBackgroundColor: const Color(0xFF1D1D1D),
     textTheme: AppTextTheme.darkTextTheme,
   );
