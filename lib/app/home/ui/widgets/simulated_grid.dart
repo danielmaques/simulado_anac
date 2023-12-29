@@ -1,6 +1,7 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/svg.dart';
 
 class SimulatedGrid extends StatelessWidget {
@@ -18,32 +19,32 @@ class SimulatedGrid extends StatelessWidget {
       {
         'title': 'TEORIA DE VOO',
         'icon': 'assets/icons/airplane.svg',
-        'color': const Color(0xFFFA7242)
+        'color': const Color(0xFFFA7242),
       },
       {
         'title': 'METEOROLOGIA',
         'icon': 'assets/icons/cloud.svg',
-        'color': const Color(0xFF2DB759)
+        'color': const Color(0xFF2DB759),
       },
       {
         'title': 'NAVEGAÇÃO',
         'icon': 'assets/icons/map.svg',
-        'color': const Color(0xFF41BFBB)
+        'color': const Color(0xFF41BFBB),
       },
       {
         'title': 'REGULAMENTOS',
         'icon': 'assets/icons/book.svg',
-        'color': const Color(0xFF8D74ED)
+        'color': const Color(0xFF8D74ED),
       },
       {
         'title': 'C TECNICOS',
         'icon': 'assets/icons/information.svg',
-        'color': const Color.fromARGB(255, 253, 0, 253)
+        'color': const Color.fromARGB(255, 253, 0, 253),
       },
       {
         'title': 'S COMPLETO',
         'icon': 'assets/icons/note.svg',
-        'color': const Color.fromARGB(255, 230, 237, 31)
+        'color': const Color.fromARGB(255, 230, 237, 31),
       },
       // Adicione mais mapas aqui
     ].take(cardCount).toList();
@@ -58,7 +59,9 @@ class SimulatedGrid extends StatelessWidget {
           elevation: 1,
           borderRadius: borderRadius,
           child: InkWell(
-            onTap: () {},
+            onTap: () {
+              card['click'];
+            },
             borderRadius: borderRadius,
             child: Ink(
               decoration: BoxDecoration(

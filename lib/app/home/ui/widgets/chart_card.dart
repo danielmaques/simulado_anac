@@ -121,7 +121,6 @@ class PieChart2State extends State<PieChartSample2> {
 
   List<PieChartSectionData> showingSections() {
     return List.generate(3, (i) {
-      final isTouched = i == touchedIndex;
       const radius = 30.0;
       switch (i) {
         case 0:

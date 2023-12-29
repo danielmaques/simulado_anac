@@ -1,0 +1,232 @@
+[
+   {
+      "simuladoquest":{
+         "title":"A manutenção do aeroclube executou uma inspeção de pré-vôo pela manhã, antes do primeiro vôo. O comandante da aeronave deverá:",
+         "respostas":[
+            {
+               "correta":false,
+               "texto":"Apenas fazer constar no Relatório de Vôo tal fato."
+            },
+            {
+               "correta":true,
+               "texto":"Executar seu próprio pré-vôo."
+            },
+            {
+               "correta":false,
+               "texto":"Apenas conferir o abastecimento e o peso e balanceamento."
+            },
+            {
+               "correta":false,
+               "texto":"Efetuar novo pré-vôo, somente após ter sido realizado o primeiro vôo."
+            }
+         ]
+      }
+   },
+   {
+      "simuladoquest":{
+         "title":"A pressão atmosférica é do tipo:",
+         "respostas":[
+            {
+               "correta":true,
+               "texto":"Estática."
+            },
+            {
+               "correta":false,
+               "texto":"Dinâmica."
+            },
+            {
+               "correta":false,
+               "texto":"Invariável."
+            },
+            {
+               "correta":false,
+               "texto":"Diferencial."
+            }
+         ]
+      }
+   },
+   {
+      "simuladoquest":{
+         "title":"Na atmosfera, um corpo recebe pressão por todos os lados. A pressão atmosférica é uma pressão:",
+         "respostas":[
+            {
+               "correta":true,
+               "texto":"Estática."
+            },
+            {
+               "correta":false,
+               "texto":"Dinâmica."
+            },
+            {
+               "correta":false,
+               "texto":"De impacto."
+            },
+            {
+               "correta":false,
+               "texto":"Total."
+            }
+         ]
+      }
+   },
+   {
+      "simuladoquest":{
+         "title":"A pressão dinâmica depende de:",
+         "respostas":[
+            {
+               "correta":false,
+               "texto":"Peso do fluído e velocidade de escoamento."
+            },
+            {
+               "correta":true,
+               "texto":"Densidade do fluído e velocidade de escoamento."
+            },
+            {
+               "correta":false,
+               "texto":"Pequena resistência ao avanço e sustentação."
+            },
+            {
+               "correta":false,
+               "texto":"Resistência ao avanço e sustentação."
+            }
+         ]
+      }
+   },
+   {
+      "simuladoquest":{
+         "title":"Densidade ou massa específica é:",
+         "respostas":[
+            {
+               "correta":true,
+               "texto":"A quantidade de matéria por unidade de volume."
+            },
+            {
+               "correta":false,
+               "texto":"A quantidade de matéria existente num corpo."
+            },
+            {
+               "correta":false,
+               "texto":"O peso de um corpo."
+            },
+            {
+               "correta":false,
+               "texto":"O peso por unidade de volume."
+            }
+         ]
+      }
+   },
+   {
+      "simuladoquest":{
+         "title":"Num local de maior densidade atmosférica obtêm-se:",
+         "respostas":[
+            {
+               "correta":false,
+               "texto":"Menor potência e maior sustentação."
+            },
+            {
+               "correta":false,
+               "texto":"Menor sustentação e menor potência."
+            },
+            {
+               "correta":false,
+               "texto":"Maior potência e menor sustentação."
+            },
+            {
+               "correta":true,
+               "texto":"Maior sustentação e maior potência."
+            }
+         ]
+      }
+   },
+   {
+      "simuladoquest":{
+         "title":"Quando a pressão do ar aumenta, a densidade:",
+         "respostas":[
+            {
+               "correta":false,
+               "texto":"Diminui."
+            },
+            {
+               "correta":true,
+               "texto":"Aumenta."
+            },
+            {
+               "correta":false,
+               "texto":"Fica igual."
+            },
+            {
+               "correta":false,
+               "texto":"É indiferente."
+            }
+         ]
+      }
+   },
+   {
+      "simuladoquest":{
+         "title":"Quando o ar atmosférico aquece, a densidade:",
+         "respostas":[
+            {
+               "correta":true,
+               "texto":"Diminui."
+            },
+            {
+               "correta":false,
+               "texto":"Aumenta."
+            },
+            {
+               "correta":false,
+               "texto":"Fica igual."
+            },
+            {
+               "correta":false,
+               "texto":"É indiferente."
+            }
+         ]
+      }
+   },
+   {
+      "simuladoquest":{
+         "title":"Em uma pista, quanto maior a temperatura:",
+         "respostas":[
+            {
+               "correta":false,
+               "texto":"Maior tração."
+            },
+            {
+               "correta":false,
+               "texto":"Maior atrito dos pneus."
+            },
+            {
+               "correta":false,
+               "texto":"Menor velocidade de estol."
+            },
+            {
+               "correta":true,
+               "texto":"Maior a corrida de decolagem."
+            }
+         ]
+      }
+   },
+   {
+      "1simuladoquest":{
+         "title":"A densidade do ar atmosférico é:",
+         "respostas":[
+            {
+               "correta":false,
+               "texto":"Diretamente proporcional a pressão e temperatura."
+            },
+            {
+               "correta":false,
+               "texto":"Inversamente proporcional a pressão e temperatura."
+            },
+            {
+               "correta":true,
+               "texto":"Diretamente proporcional a pressão e inversamente proporcional a temperatura."
+            },
+            {
+               "correta":false,
+               "texto":"Inversamente proporcional a pressão e diretamente proporcional a temperatura."
+            }
+         ]
+      }
+   }
+]
