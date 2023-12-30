@@ -2,8 +2,11 @@ import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:lottie/lottie.dart';
+import 'package:uuid/uuid.dart';
 
 import '../../data/model/answer_model.dart';
+import '../../data/model/params/punctuation_params.dart';
+import '../bloc/save_bloc.dart';
 import '../widgets/custm_button.dart';
 
 class PunctuationPage extends StatefulWidget {
@@ -24,7 +27,8 @@ class PunctuationPage extends StatefulWidget {
 
 class _PunctuationPageState extends State<PunctuationPage>
     with SingleTickerProviderStateMixin {
-  late final AnimationController controller;
+  late ISaveBloc _bloc;
+  late AnimationController controller;
 
   int get correctAnswersCount {
     return widget.question.where((answer) => answer.correct).length;
@@ -49,6 +53,18 @@ class _PunctuationPageState extends State<PunctuationPage>
   @override
   void initState() {
     super.initState();
+    _bloc = Modular.get<ISaveBloc>();
+    _bloc.savePunctuation(
+      PunctuationParams(
+        correctAnswers: correctAnswersCount,
+        wrongAnswers: wrongAnswersCount,
+        notAnswered: notAnsweredCount,
+        percentage: correctAnswersPercentage,
+        id: const Uuid().v4(),
+        subject: widget.type,
+        date: DateTime.now(),
+      ),
+    );
     controller = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 3),

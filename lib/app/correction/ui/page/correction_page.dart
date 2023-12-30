@@ -73,9 +73,9 @@ void printPage({required List<AnswerModel> question}) async {
 
   for (var i = 0; i < question.length; i++) {
     var q = question[i];
-    content.add(pw.Text('Question ${i + 1}: ${q.question}'));
-    content.add(pw.Text('Correct answer: ${q.correctAnswer}'));
-    content.add(pw.Text('Your answer: ${q.answer}'));
+    content.add(pw.Text('Questão ${i + 1}: ${q.question}'));
+    content.add(pw.Text('Resposta correta: ${q.correctAnswer}'));
+    content.add(pw.Text('Sua resposta: ${q.answer}'));
     content.add(pw.SizedBox(height: 1.0 * PdfPageFormat.cm));
   }
 
