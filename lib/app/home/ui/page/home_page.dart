@@ -1,4 +1,3 @@
-import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -105,8 +104,14 @@ class _HomePageState extends State<HomePage> {
                         },
                       );
                     } else {
-                      return const Icon(
-                        EvaIcons.listOutline,
+                      return SizedBox(
+                        height: 100,
+                        child: Center(
+                          child: Text(
+                            'Nenhum simulado avaliado',
+                            style: Theme.of(context).textTheme.bodySmall,
+                          ),
+                        ),
                       );
                     }
                   },
