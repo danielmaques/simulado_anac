@@ -1,82 +1,71 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AppTextTheme {
   AppTextTheme._();
 
-  static TextTheme lightTextTheme = const TextTheme(
-    displayLarge: TextStyle(
+  static TextTheme lightTextTheme = TextTheme(
+    displayLarge: GoogleFonts.poppins(
       color: Colors.black,
       fontSize: 24,
-      fontFamily: 'Poppins',
       fontWeight: FontWeight.bold,
     ),
-    displayMedium: TextStyle(
+    displayMedium: GoogleFonts.poppins(
       color: Colors.black,
       fontSize: 22,
-      fontFamily: 'Poppins',
       fontWeight: FontWeight.bold,
     ),
-    displaySmall: TextStyle(
+    displaySmall: GoogleFonts.poppins(
       color: Colors.black,
       fontSize: 20,
-      fontFamily: 'Poppins',
       fontWeight: FontWeight.bold,
     ),
-    bodyLarge: TextStyle(
+    bodyLarge: GoogleFonts.poppins(
       color: Colors.black,
       fontSize: 18,
-      fontFamily: 'Poppins',
       fontWeight: FontWeight.normal,
     ),
-    bodyMedium: TextStyle(
+    bodyMedium: GoogleFonts.poppins(
       color: Colors.black,
       fontSize: 16,
-      fontFamily: 'Poppins',
       fontWeight: FontWeight.normal,
     ),
-    bodySmall: TextStyle(
+    bodySmall: GoogleFonts.poppins(
       color: Colors.black,
       fontSize: 14,
-      fontFamily: 'Poppins',
       fontWeight: FontWeight.w200,
     ),
   );
 
-  static TextTheme darkTextTheme = const TextTheme(
-    displayLarge: TextStyle(
+  static TextTheme darkTextTheme = TextTheme(
+    displayLarge: GoogleFonts.poppins(
       color: Colors.white,
       fontSize: 24,
-      fontFamily: 'Poppins',
       fontWeight: FontWeight.bold,
     ),
-    displayMedium: TextStyle(
+    displayMedium: GoogleFonts.poppins(
       color: Colors.white,
       fontSize: 22,
-      fontFamily: 'Poppins',
       fontWeight: FontWeight.bold,
     ),
-    displaySmall: TextStyle(
+    displaySmall: GoogleFonts.poppins(
       color: Colors.white,
       fontSize: 20,
-      fontFamily: 'Poppins',
       fontWeight: FontWeight.bold,
     ),
-    bodyLarge: TextStyle(
+    bodyLarge: GoogleFonts.poppins(
       color: Colors.white,
       fontSize: 18,
-      fontFamily: 'Poppins',
       fontWeight: FontWeight.normal,
     ),
-    bodyMedium: TextStyle(
+    bodyMedium: GoogleFonts.poppins(
       color: Colors.white,
       fontSize: 16,
-      fontFamily: 'Poppins',
       fontWeight: FontWeight.normal,
     ),
-    bodySmall: TextStyle(
+    bodySmall: GoogleFonts.poppins(
       color: Colors.white,
       fontSize: 14,
-      fontFamily: 'Poppins',
       fontWeight: FontWeight.w200,
     ),
   );

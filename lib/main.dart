@@ -5,6 +5,7 @@ import 'package:simulados_anac/app/questions/questions_module.dart';
 import 'package:simulados_anac/core/theme/app_theme.dart';
 
 import 'app/home/home_module.dart';
+import 'app/punctuation/punctuation_module.dart';
 import 'core/theme/theme_manager.dart';
 
 void main() {
@@ -44,5 +45,6 @@ class AppModule extends Module {
   void routes(r) {
     r.module('/', module: HomeModule());
     r.module('/questions', module: QuestionsModule());
+    r.module('/punctuation', module: PunctuationModule());
   }
 }

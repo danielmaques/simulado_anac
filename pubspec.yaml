@@ -17,6 +17,8 @@ dependencies:
   equatable: ^2.0.5
   shared_preferences: ^2.1.0
   fl_chart: ^0.66.0
+  lottie: ^2.7.0
+  google_fonts: ^6.1.0
 
 dev_dependencies:
   flutter_test:
@@ -29,6 +31,7 @@ flutter:
   assets:
     - assets/icons/
     - assets/data/
+    - assets/animations/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

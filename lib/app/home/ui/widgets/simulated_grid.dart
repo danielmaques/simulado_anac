@@ -69,6 +69,7 @@ class SimulatedGrid extends StatelessWidget {
                 '/questions/',
                 arguments: {
                   "select": card['select'] == 0 ? 'simulado1' : 'simulado2',
+                  "type": card['title'],
                 },
               );
             },

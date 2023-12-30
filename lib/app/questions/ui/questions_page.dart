@@ -5,14 +5,18 @@ import 'package:simulados_anac/app/questions/data/model/questions_model.dart';
 import 'package:simulados_anac/app/questions/ui/bloc/get_questions_bloc.dart';
 
 import '../../../core/states/base_page_state.dart';
+import '../../punctuation/data/model/answer_model.dart';
+import '../../punctuation/ui/widgets/custm_button.dart';
 
 class QuestionsPage extends StatefulWidget {
   const QuestionsPage({
     super.key,
     required this.select,
+    required this.type,
   });
 
   final String select;
+  final String type;
 
   @override
   State<QuestionsPage> createState() => _QuestionsPageState();
@@ -24,6 +28,7 @@ class _QuestionsPageState extends State<QuestionsPage> {
   int currentPage = 0;
   int questionLength = 0;
   Map<int, int> selectedItem = {};
+  Map<int, AnswerModel> questions = {};
 
   @override
   void initState() {
@@ -52,7 +57,7 @@ class _QuestionsPageState extends State<QuestionsPage> {
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         centerTitle: true,
         title: Text(
-          'Simulado',
+          widget.type,
           style: Theme.of(context).textTheme.bodyMedium,
         ),
       ),
@@ -67,7 +72,7 @@ class _QuestionsPageState extends State<QuestionsPage> {
               children: [
                 Text(
                   'Questão ${currentPage + 1} de $questionLength',
-                  style: Theme.of(context).textTheme.headlineSmall,
+                  style: Theme.of(context).textTheme.displaySmall,
                 ),
                 Visibility(
                   visible: currentPage != 0,
@@ -117,7 +122,7 @@ class _QuestionsPageState extends State<QuestionsPage> {
                     var data = state.data;
                     return PageView.builder(
                       controller: pageController,
-                      itemCount: data.length - 1,
+                      itemCount: data.length,
                       itemBuilder: (context, index) {
                         return Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -139,13 +144,41 @@ class _QuestionsPageState extends State<QuestionsPage> {
                                   const SizedBox(height: 15),
                               itemBuilder: (context, index) {
                                 var item = data[currentPage]
-                                    .simuladoquest!
-                                    .respostas![index];
+                                    .simuladoquest
+                                    ?.respostas?[index];
                                 return GestureDetector(
                                   onTap: () {
                                     setState(() {
                                       selectedItem[currentPage] = index;
                                     });
+
+                                    var correctAnswerIndex = data[currentPage]
+                                        .simuladoquest
+                                        ?.respostas
+                                        ?.indexWhere((element) =>
+                                            element.correta == true);
+                                    var userAnswer = selectedItem[currentPage];
+                                    var correct = userAnswer != null &&
+                                        correctAnswerIndex == userAnswer;
+
+                                    questions[currentPage] = AnswerModel(
+                                      question: data[currentPage]
+                                              .simuladoquest
+                                              ?.title ??
+                                          '',
+                                      correct: correct,
+                                      correctAnswer: data[currentPage]
+                                              .simuladoquest
+                                              ?.respostas?[
+                                                  correctAnswerIndex ?? 0]
+                                              .texto ??
+                                          '',
+                                      answer: data[currentPage]
+                                              .simuladoquest!
+                                              .respostas![index]
+                                              .texto ??
+                                          '',
+                                    );
                                   },
                                   child: Material(
                                     elevation: 1,
@@ -175,7 +208,7 @@ class _QuestionsPageState extends State<QuestionsPage> {
                                         children: [
                                           Flexible(
                                             child: Text(
-                                              item.texto!,
+                                              item?.texto ?? '',
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .bodyMedium,
@@ -189,47 +222,18 @@ class _QuestionsPageState extends State<QuestionsPage> {
                               },
                             ),
                             Visibility(
-                              visible: currentPage == data.length - 2,
-                              child: Material(
-                                elevation: 1,
-                                borderRadius: BorderRadius.circular(50),
-                                child: InkWell(
-                                  borderRadius: BorderRadius.circular(50),
-                                  onTap: () {
-                                    for (var i = 0; i < data.length; i++) {
-                                      var question =
-                                          data[i].simuladoquest!.title;
-                                      var correctAnswer = data[i]
-                                          .simuladoquest!
-                                          .respostas![i]
-                                          .correta;
-                                      var userAnswer = selectedItem[i];
-
-                                      print('Questão: $question');
-                                      print('Resposta correta: $correctAnswer');
-                                      print('Resposta do usuário: $userAnswer');
-                                    }
-                                  },
-                                  child: Container(
-                                    height: 56,
-                                    width: 130,
-                                    alignment: Alignment.center,
-                                    decoration: BoxDecoration(
-                                      color: Theme.of(context).primaryColor,
-                                      borderRadius: BorderRadius.circular(50),
-                                    ),
-                                    child: Text(
-                                      'Finalizar',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headlineSmall
-                                          ?.copyWith(
-                                            color: Theme.of(context)
-                                                .scaffoldBackgroundColor,
-                                          ),
-                                    ),
-                                  ),
-                                ),
+                              visible: currentPage == data.length - 1,
+                              child: CustomButton(
+                                label: 'Encerar Simulado',
+                                onTap: () {
+                                  Modular.to.pushReplacementNamed(
+                                    '/punctuation',
+                                    arguments: {
+                                      'question': questions.values.toList(),
+                                      'amount': questionLength,
+                                    },
+                                  );
+                                },
                               ),
                             ),
                           ],

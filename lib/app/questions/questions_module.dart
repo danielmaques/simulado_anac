@@ -19,6 +19,7 @@ class QuestionsModule extends Module {
       '/',
       child: (context) => QuestionsPage(
         select: r.args.data['select'],
+        type: r.args.data['type'],
       ),
     );
   }
