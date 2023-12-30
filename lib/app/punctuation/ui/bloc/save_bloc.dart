@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:simulados_anac/core/states/base_page_state.dart';
 
 import '../../data/model/params/punctuation_params.dart';
@@ -22,6 +23,7 @@ class SaveBloc extends ISaveBloc {
     try {
       final result = await repository.savePunctuation(punctuation: punctuation);
       emit(SuccessState(result));
+      Modular.to.pushReplacementNamed('/');
     } catch (e) {
       emit(ErrorState(e.toString()));
     }

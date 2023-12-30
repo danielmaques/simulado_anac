@@ -30,6 +30,14 @@ class SavePunctuationDataSource implements ISavePunctuationDataSource {
     try {
       final Database db = await database;
 
+      List<Map> list = await db.rawQuery(
+          'SELECT name FROM sqlite_master WHERE type="table" AND name="scores"');
+      if (list.isEmpty) {
+        await db.execute(
+          "CREATE TABLE scores(id TEXT PRIMARY KEY, subject TEXT, correctAnswers INTEGER, wrongAnswers INTEGER, notAnswered INTEGER, date TEXT)",
+        );
+      }
+
       await db.insert(
         'scores',
         {

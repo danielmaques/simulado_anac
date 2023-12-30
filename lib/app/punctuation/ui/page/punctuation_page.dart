@@ -54,17 +54,6 @@ class _PunctuationPageState extends State<PunctuationPage>
   void initState() {
     super.initState();
     _bloc = Modular.get<ISaveBloc>();
-    _bloc.savePunctuation(
-      PunctuationParams(
-        correctAnswers: correctAnswersCount,
-        wrongAnswers: wrongAnswersCount,
-        notAnswered: notAnsweredCount,
-        percentage: correctAnswersPercentage,
-        id: const Uuid().v4(),
-        subject: widget.type,
-        date: DateTime.now(),
-      ),
-    );
     controller = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 3),
@@ -198,7 +187,7 @@ class _PunctuationPageState extends State<PunctuationPage>
                           color: Theme.of(context).scaffoldBackgroundColor,
                         ),
                         child: const Icon(
-                          EvaIcons.checkmark,
+                          EvaIcons.alertTriangle,
                           color: Color(0xFFFEBB3B),
                         ),
                       ),
@@ -234,7 +223,22 @@ class _PunctuationPageState extends State<PunctuationPage>
               CustomButton(
                 label: 'Finalizar',
                 onTap: () {
-                  Modular.to.pushReplacementNamed('/');
+                  var totalQuestions = correctAnswersCount +
+                      wrongAnswersCount +
+                      notAnsweredCount;
+                  var send = (correctAnswersCount / totalQuestions) * 100;
+                  print(send);
+                  _bloc.savePunctuation(
+                    PunctuationParams(
+                      correctAnswers: correctAnswersCount,
+                      wrongAnswers: wrongAnswersCount,
+                      notAnswered: notAnsweredCount,
+                      percentage: send.toDouble(),
+                      id: const Uuid().v4(),
+                      subject: widget.type,
+                      date: DateTime.now(),
+                    ),
+                  );
                 },
               ),
             ],

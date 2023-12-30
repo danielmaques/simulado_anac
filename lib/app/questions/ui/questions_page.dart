@@ -227,7 +227,7 @@ class _QuestionsPageState extends State<QuestionsPage> {
                                 label: 'Encerar Simulado',
                                 onTap: () {
                                   Modular.to.pushReplacementNamed(
-                                    '/punctuation',
+                                    '/punctuation/',
                                     arguments: {
                                       'question': questions.values.toList(),
                                       'amount': questionLength,
