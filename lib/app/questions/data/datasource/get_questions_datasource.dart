@@ -6,16 +6,18 @@ import 'package:simulados_anac/core/result_wrapper/result_wrapper.dart';
 import '../model/questions_model.dart';
 
 abstract class IGetQuestionsDatasource {
-  Future<Result<QuestionModel>> call({required String question});
+  Future<Result<List<QuestionModel>>> call({required String question});
 }
 
 class GetQuestionsDatasource implements IGetQuestionsDatasource {
   @override
-  Future<Result<QuestionModel>> call({required String question}) async {
-    final data = await rootBundle.loadString('assets/$question.json');
-    final json = jsonDecode(data);
+  Future<Result<List<QuestionModel>>> call({required String question}) async {
+    final data = await rootBundle.loadString('assets/data/$question.json');
+    final json = jsonDecode(data) as List;
 
-    final questions = QuestionModel.fromJson(json);
+    final questions = json
+        .map((item) => QuestionModel.fromJson(item as Map<String, dynamic>))
+        .toList();
 
     return ResultSuccess(questions);
   }

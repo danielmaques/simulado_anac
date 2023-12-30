@@ -20,33 +20,38 @@ class SimulatedGrid extends StatelessWidget {
         'title': 'TEORIA DE VOO',
         'icon': 'assets/icons/airplane.svg',
         'color': const Color(0xFFFA7242),
+        'select': 0,
       },
       {
         'title': 'METEOROLOGIA',
         'icon': 'assets/icons/cloud.svg',
         'color': const Color(0xFF2DB759),
+        'select': 1,
       },
       {
         'title': 'NAVEGAÇÃO',
         'icon': 'assets/icons/map.svg',
         'color': const Color(0xFF41BFBB),
+        'select': 2,
       },
       {
         'title': 'REGULAMENTOS',
         'icon': 'assets/icons/book.svg',
         'color': const Color(0xFF8D74ED),
+        'select': 3,
       },
       {
         'title': 'C TECNICOS',
         'icon': 'assets/icons/information.svg',
         'color': const Color.fromARGB(255, 253, 0, 253),
+        'select': 4,
       },
       {
         'title': 'S COMPLETO',
         'icon': 'assets/icons/note.svg',
         'color': const Color.fromARGB(255, 230, 237, 31),
+        'select': 5,
       },
-      // Adicione mais mapas aqui
     ].take(cardCount).toList();
     return GridView.count(
       shrinkWrap: true,
@@ -60,7 +65,12 @@ class SimulatedGrid extends StatelessWidget {
           borderRadius: borderRadius,
           child: InkWell(
             onTap: () {
-              card['click'];
+              Modular.to.pushReplacementNamed(
+                '/questions/',
+                arguments: {
+                  "select": card['select'] == 0 ? 'simulado1' : 'simulado2',
+                },
+              );
             },
             borderRadius: borderRadius,
             child: Ink(

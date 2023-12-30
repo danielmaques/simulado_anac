@@ -15,6 +15,11 @@ class QuestionsModule extends Module {
 
   @override
   void routes(r) {
-    r.child('/', child: (context) => const QuestionsPage());
+    r.child(
+      '/',
+      child: (context) => QuestionsPage(
+        select: r.args.data['select'],
+      ),
+    );
   }
 }

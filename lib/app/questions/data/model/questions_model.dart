@@ -16,6 +16,10 @@ class QuestionModel {
     }
     return data;
   }
+
+  static List<QuestionModel> fromJsonList(List<dynamic> jsonList) {
+    return jsonList.map((item) => QuestionModel.fromJson(item)).toList();
+  }
 }
 
 class Simuladoquest {

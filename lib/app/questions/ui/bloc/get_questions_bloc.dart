@@ -20,7 +20,8 @@ class GetQuestionsBloc extends IGetQuestionsBloc {
 
     try {
       final result = await _getQuestionsRepository.call(question: question);
-      emit(SuccessState(result));
+      final shuffledQuestions = result.getSuccessData..shuffle();
+      emit(SuccessState(shuffledQuestions));
     } catch (e) {
       emit(ErrorState(e.toString()));
     }
