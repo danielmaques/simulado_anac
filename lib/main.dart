@@ -4,6 +4,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:simulados_anac/app/questions/questions_module.dart';
 import 'package:simulados_anac/core/theme/app_theme.dart';
 
+import 'app/correction/correction_module.dart';
 import 'app/home/home_module.dart';
 import 'app/punctuation/punctuation_module.dart';
 import 'core/theme/theme_manager.dart';
@@ -46,5 +47,6 @@ class AppModule extends Module {
     r.module('/', module: HomeModule());
     r.module('/questions', module: QuestionsModule());
     r.module('/punctuation', module: PunctuationModule());
+    r.module('/correction', module: CorrectionModule());
   }
 }

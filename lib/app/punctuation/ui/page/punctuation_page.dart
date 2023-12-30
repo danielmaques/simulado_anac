@@ -11,10 +11,12 @@ class PunctuationPage extends StatefulWidget {
     super.key,
     required this.question,
     required this.amount,
+    required this.type,
   });
 
   final List<AnswerModel> question;
   final int amount;
+  final String type;
 
   @override
   State<PunctuationPage> createState() => _PunctuationPageState();
@@ -202,7 +204,15 @@ class _PunctuationPageState extends State<PunctuationPage>
               SizedBox(height: MediaQuery.of(context).size.height * 0.16),
               CustomButton(
                 label: 'Visualizar Correção',
-                onTap: () {},
+                onTap: () {
+                  Modular.to.pushNamed(
+                    '/correction/',
+                    arguments: {
+                      'question': widget.question,
+                      'type': widget.type,
+                    },
+                  );
+                },
               ),
               const SizedBox(height: 10),
               CustomButton(

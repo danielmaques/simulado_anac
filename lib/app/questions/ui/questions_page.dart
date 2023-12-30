@@ -231,6 +231,7 @@ class _QuestionsPageState extends State<QuestionsPage> {
                                     arguments: {
                                       'question': questions.values.toList(),
                                       'amount': questionLength,
+                                      'type': widget.type,
                                     },
                                   );
                                 },
