@@ -115,7 +115,7 @@ class _OtpPageState extends State<OtpPage> {
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(10),
                               ),
-                              hintText: '(12) 34567-8901',
+                              hintText: '(12) 3 4567-8901',
                               helperStyle: Theme.of(context)
                                   .textTheme
                                   .bodyMedium!
