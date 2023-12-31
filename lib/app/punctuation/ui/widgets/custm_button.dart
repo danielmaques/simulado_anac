@@ -5,9 +5,11 @@ class CustomButton extends StatelessWidget {
     super.key,
     required this.label,
     required this.onTap,
+    this.lock = false,
   });
 
   final String label;
+  final bool lock;
   final Function() onTap;
 
   @override
@@ -19,13 +21,15 @@ class CustomButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
         child: InkWell(
           borderRadius: BorderRadius.circular(10),
-          onTap: onTap,
+          onTap: lock == true ? null : onTap,
           child: Container(
             width: double.infinity,
             padding: const EdgeInsets.symmetric(vertical: 15),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color: Theme.of(context).primaryColor,
+              color: lock == true
+                  ? Theme.of(context).primaryColor.withOpacity(0.5)
+                  : Theme.of(context).primaryColor,
             ),
             child: Center(
               child: Text(

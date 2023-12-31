@@ -12,7 +12,20 @@
           "package_name": "com.example.simulados_anac"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "736682779067-95p5bbb0sr4btulnauhh0a39761e376i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.simulados_anac",
+            "certificate_hash": "399ac11d948b32dd27d5270a8aa54d194dd0d665"
+          }
+        },
+        {
+          "client_id": "736682779067-93our413drevd283h35fnj3sis4qbiph.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCvaGhkBnGustK5jo5WLYs0xHIUY9GGrUU"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "736682779067-93our413drevd283h35fnj3sis4qbiph.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "736682779067-iq9i2uqc4oun5q57ia4sms9jger540bf.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.simuladosAnac"
+              }
+            }
+          ]
         }
       }
     }
