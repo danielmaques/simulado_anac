@@ -23,7 +23,7 @@ class SaveBloc extends ISaveBloc {
     try {
       final result = await repository.savePunctuation(punctuation: punctuation);
       emit(SuccessState(result));
-      Modular.to.pushReplacementNamed('/');
+      Modular.to.pushReplacementNamed('/home/');
     } catch (e) {
       emit(ErrorState(e.toString()));
     }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:simulados_anac/app/otp/otp_module.dart';
 import 'package:simulados_anac/app/questions/questions_module.dart';
 import 'package:simulados_anac/core/theme/app_theme.dart';
 
@@ -46,7 +47,8 @@ class AppModule extends Module {
 
   @override
   void routes(r) {
-    r.module('/', module: HomeModule());
+    r.module('/', module: OtpModule());
+    r.module('/home', module: HomeModule());
     r.module('/questions', module: QuestionsModule());
     r.module('/punctuation', module: PunctuationModule());
     r.module('/correction', module: CorrectionModule());

@@ -8,7 +8,6 @@ import 'package:simulados_anac/app/home/ui/widgets/latest_simulations.dart';
 
 import '../../../../core/states/base_page_state.dart';
 import '../../data/models/punctuation_model.dart';
-import '../widgets/chart_card.dart';
 import '../widgets/simulated_grid.dart';
 import '../widgets/title_action.dart';
 
@@ -46,12 +45,12 @@ class _HomePageState extends State<HomePage> {
                   name: 'Nome do Usuário',
                 ),
                 const SizedBox(height: 25),
-                Material(
-                  elevation: 1,
-                  color: Theme.of(context).cardColor,
-                  borderRadius: BorderRadius.circular(16),
-                  child: const BarChartSample2(),
-                ),
+                // Material(
+                //   elevation: 1,
+                //   color: Theme.of(context).cardColor,
+                //   borderRadius: BorderRadius.circular(16),
+                //   child: const BarChartSample2(),
+                // ),
                 const SizedBox(height: 25),
                 TitleAction(
                   title: 'Simulados',
