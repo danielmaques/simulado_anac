@@ -2,8 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:mask/mask.dart';
-import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:simulados_anac/app/otp/ui/bloc/auth_bloc.dart';
 import 'package:simulados_anac/app/punctuation/ui/widgets/custm_button.dart';
 
@@ -103,147 +101,50 @@ class _OtpPageState extends State<OtpPage> {
             child: SizedBox(
               height: 274,
               width: MediaQuery.of(context).size.width,
-              child: PageView.builder(
-                controller: codeController,
-                physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: (context, index) {
-                  if (index == 0) {
-                    return Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 15),
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).scaffoldBackgroundColor,
-                        borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(25),
-                          topRight: Radius.circular(25),
-                        ),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Celular',
-                            style: Theme.of(context).textTheme.bodyMedium,
-                          ),
-                          const SizedBox(height: 10),
-                          TextFormField(
-                            controller: numberController,
-                            keyboardType: TextInputType.number,
-                            inputFormatters: [Mask.phone()],
-                            style: Theme.of(context).textTheme.bodyMedium,
-                            decoration: InputDecoration(
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                borderSide: BorderSide(
-                                  color: Theme.of(context).primaryColor,
-                                ),
-                              ),
-                              filled: true,
-                              fillColor: Theme.of(context).cardColor,
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  borderSide: BorderSide(
-                                    color: Theme.of(context).cardColor,
-                                  )),
-                              hintText: '(12) 3 4567-8901',
-                              helperStyle: Theme.of(context)
-                                  .textTheme
-                                  .bodyMedium!
-                                  .copyWith(color: Colors.grey[500]),
-                            ),
-                            onChanged: (_) {
-                              _validateCanSend();
-                            },
-                          ),
-                          const SizedBox(height: 30),
-                          ValueListenableBuilder(
-                            valueListenable: canSend,
-                            builder: (_, __, ___) {
-                              return CustomButton(
-                                label: 'Enviar Codigo',
-                                lock: !canSend.value,
-                                onTap: () {
-                                  authBloc.verifyPhoneNumber(
-                                      '+55${numberController.text}');
-                                  codeController.animateToPage(
-                                    1,
-                                    duration: const Duration(milliseconds: 400),
-                                    curve: Curves.easeIn,
-                                  );
-                                },
-                              );
-                            },
-                          ),
-                        ],
-                      ),
-                    );
-                  } else if (index == 1) {
-                    return Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 15),
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).scaffoldBackgroundColor,
-                        borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(25),
-                          topRight: Radius.circular(25),
-                        ),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Codigo',
-                            style: Theme.of(context).textTheme.bodyMedium,
-                          ),
-                          const SizedBox(height: 10),
-                          PinCodeTextField(
-                            appContext: context,
-                            length: 6,
-                            obscureText: false,
-                            textStyle: Theme.of(context).textTheme.bodyMedium,
-                            pinTheme: PinTheme(
-                              shape: PinCodeFieldShape.box,
-                              borderRadius: BorderRadius.circular(5),
-                              fieldHeight: 66,
-                              fieldWidth: 53,
-                              activeColor: Colors.grey,
-                              inactiveColor: Colors.grey,
-                            ),
-                            controller: otpController,
-                            keyboardType: TextInputType.name,
-                            onCompleted: (value) {
-                              _validateOtp();
-                            },
-                          ),
-                          const SizedBox(height: 30),
-                          CustomButton(
-                            label: 'Entrar',
-                            onTap: () {
-                              Modular.to.pushNamed('/home/');
-                            },
-                          ),
-                        ],
-                      ),
-                    );
-                  }
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                },
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).scaffoldBackgroundColor,
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(25),
+                    topRight: Radius.circular(25),
+                  ),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CustomButton(
+                      type: ButtonType.google,
+                      onTap: () {
+                        authBloc.loginGoogle();
+                        codeController.animateToPage(
+                          1,
+                          duration: const Duration(milliseconds: 400),
+                          curve: Curves.easeIn,
+                        );
+                      },
+                    ),
+                    const SizedBox(height: 20),
+                    CustomButton(
+                      type: ButtonType.facebook,
+                      onTap: () {
+                        authBloc.loginFacebook();
+                        codeController.animateToPage(
+                          1,
+                          duration: const Duration(milliseconds: 400),
+                          curve: Curves.easeIn,
+                        );
+                      },
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
         ],
       ),
     );
-  }
-
-  void _validateCanSend() {
-    if (numberController.text.length == 16) {
-      canSend.value = true;
-    } else {
-      canSend.value = false;
-    }
   }
 
   void _validateOtp() {

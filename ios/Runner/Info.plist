@@ -4,15 +4,19 @@
 <dict>
 <key>CFBundleURLTypes</key>
 <array>
-    <dict>
-        <key>CFBundleTypeRole</key>
-        <string>Editor</string>
-        <key>CFBundleURLSchemes</key>
-        <array>
-            <string>app-1-736682779067-ios-ef283eaa76c5ca99a8e49e</string>
-        </array>
-    </dict>
+  <dict>
+  <key>CFBundleURLSchemes</key>
+  <array>
+    <string>251064868004160</string>
+  </array>
+  </dict>
 </array>
+<key>FacebookAppID</key>
+<string>251064868004160</string>
+<key>FacebookClientToken</key>
+<string>b48bda64cf3d645783802c78183fd749</string>
+<key>FacebookDisplayName</key>
+<string>Simulado Anac</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>

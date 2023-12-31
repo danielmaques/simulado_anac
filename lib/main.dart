@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:simulados_anac/app/otp/otp_module.dart';
 import 'package:simulados_anac/app/questions/questions_module.dart';
+import 'package:simulados_anac/core/services/user_hash/user_hash.dart';
 import 'package:simulados_anac/core/theme/app_theme.dart';
 
 import 'app/correction/correction_module.dart';
@@ -26,18 +27,34 @@ class AppWidget extends StatelessWidget {
       create: (_) => Modular.get<ThemeCubit>(),
       child: BlocBuilder<ThemeCubit, ThemeMode>(
         builder: (context, themeMode) {
-          return MaterialApp.router(
-            title: 'My Smart App',
-            debugShowCheckedModeBanner: false,
-            themeMode: themeMode,
-            theme: AppTheme.lightTheme,
-            darkTheme: AppTheme.darkTheme,
-            routerConfig: Modular.routerConfig,
+          return FutureBuilder(
+            future: getUserHash(),
+            builder: ((context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.done) {
+                if (snapshot.hasData &&
+                    snapshot.data != null &&
+                    snapshot.data!.isNotEmpty) {
+                  Modular.to.pushReplacementNamed('/home/');
+                }
+              }
+              return MaterialApp.router(
+                title: 'My Smart App',
+                debugShowCheckedModeBanner: false,
+                themeMode: themeMode,
+                theme: AppTheme.lightTheme,
+                darkTheme: AppTheme.darkTheme,
+                routerConfig: Modular.routerConfig,
+              );
+            }),
           );
         },
       ),
     );
   }
+}
+
+Future<String?> getUserHash() async {
+  return await UserHash.getUserHash();
 }
 
 class AppModule extends Module {

@@ -15,4 +15,8 @@
     <style name="NormalTheme" parent="@android:style/Theme.Light.NoTitleBar">
         <item name="android:windowBackground">?android:colorBackground</item>
     </style>
+    <!-- Colors for Facebook SDK -->
+    <color name="com_facebook_button_background_color_focused_disabled">#4267B2</color>
+    <color name="com_facebook_button_background_color_focused">#4267B2</color>
+    <color name="com_facebook_button_border_color_focused">#29487D</color>
 </resources>

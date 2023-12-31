@@ -1,76 +1,87 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:simulados_anac/core/errors/base_error.dart';
 import 'package:simulados_anac/core/result_wrapper/result_wrapper.dart';
 
 abstract class IAuthDataSource {
-  Future<Result<bool>> signInWithPhoneNumber(
-      String smsCode, String verificationId);
-  Future<Result<bool>> verifyPhoneNumber(String phoneNumber);
+  Future<Result<String>> signInWithGoogle();
+  Future<Result<String>> signInWithFacebook();
+  Future<Result<String>> signInWithApple();
 }
 
 class AuthDataSource implements IAuthDataSource {
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+  final GoogleSignIn googleSignIn = GoogleSignIn();
 
   @override
-  Future<Result<bool>> signInWithPhoneNumber(
-      String smsCode, String verificationId) async {
+  Future<Result<String>> signInWithGoogle() async {
     try {
-      final AuthCredential credential = PhoneAuthProvider.credential(
-        verificationId: verificationId,
-        smsCode: smsCode,
+      final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
+
+      if (googleUser == null) {
+        return ResultError(BaseError('Sign in aborted by user'));
+      }
+
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
+
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
       );
 
       final UserCredential response =
           await firebaseAuth.signInWithCredential(credential);
 
-      return ResultSuccess(response.user != null);
+      return ResultSuccess(response.user!.uid);
     } catch (e) {
       return ResultError(BaseError(e.toString()));
     }
   }
 
   @override
-  Future<Result<bool>> verifyPhoneNumber(String phoneNumber) async {
+  Future<Result<String>> signInWithFacebook() async {
     try {
-      verificationCompleted(PhoneAuthCredential credential) async {
-        final UserCredential userCredential =
-            await firebaseAuth.signInWithCredential(credential);
-        if (userCredential.user != null) {
-          print(
-              'Phone number automatically verified and user signed in: ${userCredential.user!.uid}');
-        } else {
-          print('Failed to sign in with phone number');
-          throw FirebaseAuthException(
-              code: 'ERROR_INVALID_VERIFICATION_CODE',
-              message: 'The verification code for the phone number is invalid');
-        }
+      final LoginResult result = await FacebookAuth.instance.login();
+
+      if (result.status != LoginStatus.success) {
+        return ResultError(BaseError('Sign in aborted by user'));
       }
 
-      verificationFailed(FirebaseAuthException e) {
-        print(
-            'Phone number verification failed. Code: ${e.code}. Message: ${e.message}');
-      }
+      final OAuthCredential credential =
+          FacebookAuthProvider.credential(result.accessToken!.token);
 
-      codeSent(String verificationId, int? resendToken) async {
-        print('Verification code sent to the phone number');
-      }
+      final UserCredential response =
+          await firebaseAuth.signInWithCredential(credential);
 
-      codeAutoRetrievalTimeout(String verificationId) {
-        print('Verification code auto-retrieval timeout');
-      }
+      return ResultSuccess(response.user!.uid);
+    } catch (e) {
+      return ResultError(BaseError(e.toString()));
+    }
+  }
 
-      await firebaseAuth.verifyPhoneNumber(
-        phoneNumber: phoneNumber,
-        timeout: const Duration(seconds: 60),
-        verificationCompleted: verificationCompleted,
-        verificationFailed: verificationFailed,
-        codeSent: codeSent,
-        codeAutoRetrievalTimeout: codeAutoRetrievalTimeout,
+  @override
+  Future<Result<String>> signInWithApple() async {
+    try {
+      final credential = await SignInWithApple.getAppleIDCredential(
+        scopes: [
+          AppleIDAuthorizationScopes.email,
+          AppleIDAuthorizationScopes.fullName,
+        ],
       );
 
-      return ResultSuccess(true);
+      final oauthCredential = OAuthProvider('apple.com').credential(
+        idToken: credential.identityToken,
+        accessToken: credential.authorizationCode,
+      );
+
+      final UserCredential response =
+          await firebaseAuth.signInWithCredential(oauthCredential);
+
+      return ResultSuccess(response.user!.uid);
     } catch (e) {
-      print('Failed to Verify Phone Number: $e');
       return ResultError(BaseError(e.toString()));
     }
   }
