@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "736682779067",
+    "project_id": "anac-eb542",
+    "storage_bucket": "anac-eb542.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:736682779067:android:06246bf7b8f51147a8e49e",
+        "android_client_info": {
+          "package_name": "com.example.simulados_anac"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvaGhkBnGustK5jo5WLYs0xHIUY9GGrUU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

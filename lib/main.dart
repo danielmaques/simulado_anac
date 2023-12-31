@@ -10,6 +10,8 @@ import 'app/punctuation/punctuation_module.dart';
 import 'core/theme/theme_manager.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
   return runApp(ModularApp(module: AppModule(), child: const AppWidget()));
 }
 

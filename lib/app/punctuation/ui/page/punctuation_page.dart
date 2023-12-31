@@ -227,7 +227,6 @@ class _PunctuationPageState extends State<PunctuationPage>
                       wrongAnswersCount +
                       notAnsweredCount;
                   var send = (correctAnswersCount / totalQuestions) * 100;
-                  print(send);
                   _bloc.savePunctuation(
                     PunctuationParams(
                       correctAnswers: correctAnswersCount,
