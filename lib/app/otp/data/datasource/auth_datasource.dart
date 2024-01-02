@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
@@ -14,6 +15,7 @@ abstract class IAuthDataSource {
 class AuthDataSource implements IAuthDataSource {
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   final GoogleSignIn googleSignIn = GoogleSignIn();
+  final databaseReference = FirebaseDatabase.instance.ref();
 
   @override
   Future<Result<String>> signInWithGoogle() async {
@@ -34,6 +36,13 @@ class AuthDataSource implements IAuthDataSource {
 
       final UserCredential response =
           await firebaseAuth.signInWithCredential(credential);
+
+      await databaseReference.child('users/${response.user!.uid}').set({
+        'name': googleUser.displayName,
+        'email': googleUser.email,
+        'photoUrl': googleUser.photoUrl,
+        'uid': response.user!.uid,
+      });
 
       return ResultSuccess(response.user!.uid);
     } catch (e) {

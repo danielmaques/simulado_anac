@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -7,9 +8,11 @@ class HelloBar extends StatelessWidget {
   const HelloBar({
     super.key,
     required this.name,
+    required this.image,
   });
 
   final String name;
+  final String image;
 
   @override
   Widget build(BuildContext context) {
@@ -18,10 +21,14 @@ class HelloBar extends StatelessWidget {
         Container(
           height: 53,
           width: 53,
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             shape: BoxShape.circle,
             image: DecorationImage(
-              image: NetworkImage('https://i.pravatar.cc/900'),
+              image: image == ''
+                  ? const CachedNetworkImageProvider(
+                      'https://firebasestorage.googleapis.com/v0/b/anac-eb542.appspot.com/o/2181602-mascote-piloto-forca-aerea-oficial-perfil-avatar-cartoon-ilustracao-vetor.jpg?alt=media&token=a466ab5d-d943-425f-a14c-7c984e60f0e3')
+                  : CachedNetworkImageProvider(image),
+              fit: BoxFit.fill,
             ),
           ),
         ),

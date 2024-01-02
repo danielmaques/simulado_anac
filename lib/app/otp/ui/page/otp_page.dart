@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:simulados_anac/app/otp/ui/bloc/auth_bloc.dart';
@@ -15,44 +16,52 @@ class OtpPage extends StatefulWidget {
 class _OtpPageState extends State<OtpPage> {
   late IAuthBloc authBloc;
   final PageController pageController = PageController();
-  final PageController codeController = PageController();
-  final TextEditingController numberController = TextEditingController();
-  final TextEditingController otpController = TextEditingController();
-  final canSend = ValueNotifier<bool>(false);
   int currentIndex = 0;
   double opacity = 1;
+  Timer? _timer;
 
   final List<String> images = [
-    'assets/images/image5.jpeg',
-    'assets/images/image6.jpeg',
-    'assets/images/image7.jpeg',
-    'assets/images/image8.jpeg',
+    'https://firebasestorage.googleapis.com/v0/b/anac-eb542.appspot.com/o/image8.jpeg?alt=media&token=f6b4bddd-34ae-4f57-8726-9e6f86cc2862',
+    'https://firebasestorage.googleapis.com/v0/b/anac-eb542.appspot.com/o/image7.jpeg?alt=media&token=22456ed3-24d9-46e5-af92-846909d90d0d',
+    'https://firebasestorage.googleapis.com/v0/b/anac-eb542.appspot.com/o/image6.jpeg?alt=media&token=88324b1f-06c7-4a9e-9088-311e4246b919',
+    'https://firebasestorage.googleapis.com/v0/b/anac-eb542.appspot.com/o/image5.jpeg?alt=media&token=93523741-aad9-4d27-8329-72cc0cc7390b',
   ];
 
   @override
   void initState() {
     super.initState();
     authBloc = Modular.get<IAuthBloc>();
-    Timer.periodic(
+    _timer = Timer.periodic(
       const Duration(seconds: 6),
       (timer) async {
-        setState(() {
-          opacity = 0;
-        });
-
-        await pageController.nextPage(
-          duration: const Duration(milliseconds: 500),
-          curve: Curves.linear,
-        );
-
-        if (pageController.page != null) {
+        if (mounted) {
           setState(() {
-            currentIndex = pageController.page!.round() % images.length;
-            opacity = 1;
+            opacity = 0;
           });
+
+          await pageController.nextPage(
+            duration: const Duration(milliseconds: 500),
+            curve: Curves.linear,
+          );
+
+          if (pageController.page != null) {
+            setState(() {
+              currentIndex = pageController.page!.round() % images.length;
+              opacity = 1;
+            });
+          }
+        } else {
+          timer.cancel();
         }
       },
     );
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    pageController.dispose();
+    super.dispose();
   }
 
   @override
@@ -69,11 +78,7 @@ class _OtpPageState extends State<OtpPage> {
                 height: double.infinity,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    colorFilter: ColorFilter.mode(
-                      Colors.black.withOpacity(0.3),
-                      BlendMode.colorBurn,
-                    ),
-                    image: AssetImage(image),
+                    image: CachedNetworkImageProvider(image),
                     fit: BoxFit.fill,
                   ),
                 ),
@@ -118,11 +123,6 @@ class _OtpPageState extends State<OtpPage> {
                       type: ButtonType.google,
                       onTap: () {
                         authBloc.loginGoogle();
-                        codeController.animateToPage(
-                          1,
-                          duration: const Duration(milliseconds: 400),
-                          curve: Curves.easeIn,
-                        );
                       },
                     ),
                     const SizedBox(height: 20),
@@ -130,11 +130,6 @@ class _OtpPageState extends State<OtpPage> {
                       type: ButtonType.facebook,
                       onTap: () {
                         authBloc.loginFacebook();
-                        codeController.animateToPage(
-                          1,
-                          duration: const Duration(milliseconds: 400),
-                          curve: Curves.easeIn,
-                        );
                       },
                     ),
                   ],
@@ -145,13 +140,5 @@ class _OtpPageState extends State<OtpPage> {
         ],
       ),
     );
-  }
-
-  void _validateOtp() {
-    if (otpController.text.length == 4) {
-      canSend.value = true;
-    } else {
-      canSend.value = false;
-    }
   }
 }

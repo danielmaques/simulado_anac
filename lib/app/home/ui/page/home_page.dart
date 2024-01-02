@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:intl/intl.dart';
+import 'package:simulados_anac/app/home/data/models/user_model.dart';
+import 'package:simulados_anac/app/home/ui/bloc/get_user_bloc.dart';
 import 'package:simulados_anac/app/home/ui/bloc/score_bloc.dart';
 import 'package:simulados_anac/app/home/ui/widgets/hello_bar.dart';
 import 'package:simulados_anac/app/home/ui/widgets/latest_simulations.dart';
@@ -20,6 +22,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   late IScoreBloc _bloc;
+  late IGetUserBloc _getUserBloc;
   late double approved = 0.0;
   late double disapproved = 0.0;
 
@@ -27,7 +30,9 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     _bloc = Modular.get<IScoreBloc>();
+    _getUserBloc = Modular.get<IGetUserBloc>();
     _bloc.getScores();
+    _getUserBloc.getUserData();
   }
 
   @override
@@ -41,8 +46,19 @@ class _HomePageState extends State<HomePage> {
             top: true,
             child: Column(
               children: [
-                const HelloBar(
-                  name: 'Nome do Usuário',
+                BlocBuilder(
+                  bloc: _getUserBloc,
+                  builder: (context, state) {
+                    if (state is SuccessState<UserModel>) {
+                      var user = state.data;
+                      return HelloBar(
+                        name: user.name,
+                        image: user.photoUrl ?? '',
+                      );
+                    } else {
+                      return const SizedBox();
+                    }
+                  },
                 ),
                 const SizedBox(height: 25),
                 // Material(
@@ -51,7 +67,6 @@ class _HomePageState extends State<HomePage> {
                 //   borderRadius: BorderRadius.circular(16),
                 //   child: const BarChartSample2(),
                 // ),
-                const SizedBox(height: 25),
                 TitleAction(
                   title: 'Simulados',
                   onTap: () {

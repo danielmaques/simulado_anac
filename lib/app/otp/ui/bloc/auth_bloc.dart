@@ -15,7 +15,17 @@ abstract class IAuthBloc extends Cubit<BaseState> {
 class AuthBloc extends IAuthBloc {
   final IAuthRepository repository;
 
-  AuthBloc({required this.repository});
+  AuthBloc({required this.repository}) {
+    _checkUserHash();
+  }
+
+  Future<void> _checkUserHash() async {
+    final userHash = await UserHash.getUserHash();
+
+    if (userHash != null && userHash.isNotEmpty) {
+      Modular.to.pushReplacementNamed('/home/');
+    }
+  }
 
   @override
   Future<void> loginGoogle() async {
@@ -23,11 +33,11 @@ class AuthBloc extends IAuthBloc {
 
     try {
       final result = await repository.signInWithGoogle();
-      emit(SuccessState(result.getSuccessData));
 
       await UserHash.saveUserHash(result.getSuccessData);
 
       Modular.to.pushReplacementNamed('/home/');
+      emit(SuccessState(result.getSuccessData));
     } catch (e) {
       emit(ErrorState(e.toString()));
     }
