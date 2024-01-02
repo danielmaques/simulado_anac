@@ -207,7 +207,7 @@
       }
    },
    {
-      "1simuladoquest":{
+      "simuladoquest":{
          "title":"A densidade do ar atmosférico é:",
          "respostas":[
             {
@@ -225,6 +225,328 @@
             {
                "correta":false,
                "texto":"Inversamente proporcional a pressão e diretamente proporcional a temperatura."
+            }
+         ]
+      }
+   },
+   {
+      "simuladoquest":{
+         "title":"A densidade do ar depende dos seguintes fatores:",
+         "respostas":[
+            {
+               "correta":false,
+               "texto":"somente da pressão e temperatura"
+            },
+            {
+               "correta":false,
+               "texto":"somente da altitude e da umidade"
+            },
+            {
+               "correta":false,
+               "texto":"velocidade e pressão atmosférica"
+            },
+            {
+               "correta":true,
+               "texto":"altitude, pressão, temperatura e umidade"
+            }
+         ]
+      }
+   },
+   {
+      "simuladoquest":{
+         "title":"A densidade  do ar aumenta com:",
+         "respostas":[
+            {
+               "correta":false,
+               "texto":"menor altitude/maior temperatura"
+            },
+            {
+               "correta":true,
+               "texto":"menor altitude/menor temperatura"
+            },
+            {
+               "correta":false,
+               "texto":"maior altitude/menor temperatura"
+            },
+            {
+               "correta":false,
+               "texto":"maior altitude/maior temperatura"
+            }
+         ]
+      }
+   },
+   {
+      "simuladoquest":{
+         "title":"Assinale a afirmativa errada:",
+         "respostas":[
+            {
+               "correta":false,
+               "texto":"a temperatura de um fluído é variável"
+            },
+            {
+               "correta":false,
+               "texto":"a massa de um corpo é invariável"
+            },
+            {
+               "correta":true,
+               "texto":"o peso de um corpo é invariável"
+            },
+            {
+               "correta":false,
+               "texto":"o volume de um gás é variável"
+            }
+         ]
+      }
+   },
+   {
+      "simuladoquest":{
+         "title":"O teorema de Bernoulli é aplicado na construção de:",
+         "respostas":[
+            {
+               "correta":false,
+               "texto":"tubo de Pitot"
+            },
+            {
+               "correta":true,
+               "texto":"tubo de Venturi"
+            },
+            {
+               "correta":false,
+               "texto":"velocímetro"
+            },
+            {
+               "correta":false,
+               "texto":"altímetro"
+            }
+         ]
+      }
+   },
+   {
+      "simuladoquest":{
+         "title":"Convertendo-se a temperatura de 28º Celsius para a escala Fahrenheit, obtém-se:",
+         "respostas":[
+            {
+               "correta":false,
+               "texto":"32º F"
+            },
+            {
+               "correta":false,
+               "texto":"60º F"
+            },
+            {
+               "correta":true,
+               "texto":"82,4º F"
+            },
+            {
+               "correta":false,
+               "texto":"108,4º F"
+            }
+         ]
+      }
+   },
+   {
+      "simuladoquest":{
+         "title":"Quando o ar escoar uniformemente por um tubo, nós teremos na parte mais estreita desse tubo:",
+         "respostas":[
+            {
+               "correta":false,
+               "texto":"maior temperatura"
+            },
+            {
+               "correta":false,
+               "texto":"maior pressão estática"
+            },
+            {
+               "correta":false,
+               "texto":"menor velocidade do ar"
+            },
+            {
+               "correta":true,
+               "texto":"maior pressão dinâmica"
+            }
+         ]
+      }
+   },
+   {
+      "simuladoquest":{
+         "title":"A expressão 'força x distância' representa:",
+         "respostas":[
+            {
+               "correta":false,
+               "texto":"aceleração"
+            },
+            {
+               "correta":true,
+               "texto":"trabalho"
+            },
+            {
+               "correta":false,
+               "texto":"peso"
+            },
+            {
+               "correta":false,
+               "texto":"energia"
+            }
+         ]
+      }
+   },
+   {
+      "simuladoquest":{
+         "title":"Todo corpo tende a permanecer em estado de repouso (parado ou em movimento retilíneo e uniforme) a menos que uma força externa atue sobre ele. Esta lei de Newton é também conhecida como:",
+         "respostas":[
+            {
+               "correta":false,
+               "texto":"ação e reação"
+            },
+            {
+               "correta":true,
+               "texto":"inércia"
+            },
+            {
+               "correta":false,
+               "texto":"gravitação universal"
+            },
+            {
+               "correta":false,
+               "texto":"estabilidade"
+            }
+         ]
+      }
+   },
+   {
+      "simuladoquest":{
+         "title":"A força resultante de todas as componentes paralelas ao deslocamento da aeronave, denomina-se:",
+         "respostas":[
+            {
+               "correta":false,
+               "texto":"peso"
+            },
+            {
+               "correta":true,
+               "texto":"tração"
+            },
+            {
+               "correta":false,
+               "texto":"sustentação"
+            },
+            {
+               "correta":false,
+               "texto":"arrasto"
+            }
+         ]
+      }
+   },
+   {
+      "simuladoquest":{
+         "title":"A força ou reação que tende a frear um corpo que se desloca no ar, é a/o:",
+         "respostas":[
+            {
+               "correta":true,
+               "texto":"arrasto"
+            },
+            {
+               "correta":false,
+               "texto":"tração"
+            },
+            {
+               "correta":false,
+               "texto":"peso"
+            },
+            {
+               "correta":false,
+               "texto":"torque"
+            }
+         ]
+      }
+   },
+   {
+      "simuladoquest":{
+         "title":"A força aerodinâmica que num aerofólio é perpendicular ao vento relativo (escoamento) é conhecida como:",
+         "respostas":[
+            {
+               "correta":false,
+               "texto":"arrasto"
+            },
+            {
+               "correta":false,
+               "texto":"resultante aerodinâmica"
+            },
+            {
+               "correta":true,
+               "texto":"sustentação"
+            },
+            {
+               "correta":false,
+               "texto":"tração"
+            }
+         ]
+      }
+   },
+   {
+      "simuladoquest":{
+         "title":"Todo corpo que se desloca em um fluido, sofre desse meio uma reação que pode ser decomposta em duas componentes, denominadas:",
+         "respostas":[
+            {
+               "correta":false,
+               "texto":"ação e reação"
+            },
+            {
+               "correta":false,
+               "texto":"peso e vento relativo"
+            },
+            {
+               "correta":false,
+               "texto":"tração e gravidade"
+            },
+            {
+               "correta":true,
+               "texto":"sustentação e resistência ao avanço"
+            }
+         ]
+      }
+   },
+   {
+      "simuladoquest":{
+         "title":"Para que um corpo se mantenha em movimento com velocidade constante e em linha reta, é preciso que:",
+         "respostas":[
+            {
+               "correta":false,
+               "texto":"exista uma força aplicada sobre ele"
+            },
+            {
+               "correta":false,
+               "texto":"as forças sobre ele sejam nulas"
+            },
+            {
+               "correta":true,
+               "texto":"a resultante das forças que atuam sobre ele seja nula"
+            },
+            {
+               "correta":false,
+               "texto":"qualquer das alternativas anteriores"
+            }
+         ]
+      }
+   },
+   {
+      "simuladoquest":{
+         "title":"Assinale a resposta errada. 'A força de arrasto é diretamente proporcional:",
+         "respostas":[
+            {
+               "correta":false,
+               "texto":"à densidade do ar"
+            },
+            {
+               "correta":true,
+               "texto":"ã velocidade de deslocamento"
+            },
+            {
+               "correta":false,
+               "texto":"à área ou superfície do corpo"
+            },
+            {
+               "correta":false,
+               "texto":"ao coeficiente de arrasto"
             }
          ]
       }

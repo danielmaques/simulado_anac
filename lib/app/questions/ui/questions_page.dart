@@ -90,7 +90,7 @@ class _QuestionsPageState extends State<QuestionsPage> {
                   ),
                 ),
                 Visibility(
-                  visible: currentPage != questionLength,
+                  visible: currentPage != 19,
                   child: IconButton(
                     onPressed: () {
                       pageController.nextPage(
@@ -122,7 +122,7 @@ class _QuestionsPageState extends State<QuestionsPage> {
                     var data = state.data;
                     return PageView.builder(
                       controller: pageController,
-                      itemCount: data.length,
+                      itemCount: data.length > 20 ? 20 : data.length,
                       itemBuilder: (context, index) {
                         return Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -222,7 +222,7 @@ class _QuestionsPageState extends State<QuestionsPage> {
                               },
                             ),
                             Visibility(
-                              visible: currentPage == data.length - 1,
+                              visible: currentPage == 20 - 1,
                               child: CustomButton(
                                 label: 'Encerar Simulado',
                                 onTap: () {
