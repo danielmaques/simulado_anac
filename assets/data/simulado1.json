@@ -549,142 +549,144 @@
                "texto":"ao coeficiente de arrasto"
             }
          ]
-      },
-    "simuladoquest": {
-      "title": "Sobre a forÃ§a de sustentaÃ§Ã£o num aerofÃ³lio, podemos afirmar que:",
-      "respostas": [
-        {
-          "correta": false,
-          "texto": "ela serÃ¡ sempre positiva"
-        },
-        {
-          "correta": false,
-          "texto": "Ã© uma componente do peso do helicÃ³ptero"
-        },
-        {
-          "correta": true,
-          "texto": "serÃ¡ sempre perpendicular ao vento relativo"
-        },
-        {
-          "correta": false,
-          "texto": "serÃ¡ sempre contrÃ¡ria ao peso e vertical"
-        }
-      ]
-    }
-  },
-  {
-    "simuladoquest": {
-      "title": "A resultante aerodinÃ¢mica Ã© imaginariamente dividida em duas forÃ§as chamadas sustentaÃ§Ã£o (L) e arrasto (D). Ã correto afirmar que:",
-      "respostas": [
-        {
-          "correta": false,
-          "texto": "o arrasto pode ser positivo, negativo ou nulo"
-        },
-        {
-          "correta": false,
-          "texto": "a sustentaÃ§Ã£o nÃ£o pode ter valores negativos"
-        },
-        {
-          "correta": true,
-          "texto": "a sustentaÃ§Ã£o Ã© a componente vertical da resultante aerodinÃ¢mica"
-        },
-        {
-          "correta": false,
-          "texto": "a traÃ§Ã£o Ã© a resultante de todas as componentes paralelas ao deslocamento"
-        }
-      ]
-    }
-  },
-  {
-    "simuladoquest": {
-      "title": "O vento aparente que sopra sobre um corpo em movimento na atmosfera, na mesma direÃ§Ã£o e sentido contrÃ¡rio ao seu movimento, denomina-se vento:",
-      "respostas": [
-        {
-          "correta": false,
-          "texto": "paralelo"
-        },
-        {
-          "correta": true,
-          "texto": "relativo"
-        },
-        {
-          "correta": false,
-          "texto": "contrÃ¡rio"
-        },
-        {
-          "correta": false,
-          "texto": "magnÃ©tico"
-        }
-      ]
-    }
-  },
-  {
-    "simuladoquest": {
-      "title": "Um automÃ³vel trafega a 80 km/h. Se o vento soprar no sentido contrÃ¡rio a 20 km/h, a velocidade do automÃ³vel em relaÃ§Ã£o ao ar serÃ¡ de:",
-      "respostas": [
-        {
-          "correta": false,
-          "texto": "60 km/h"
-        },
-        {
-          "correta": true,
-          "texto": "100 km/h"
-        },
-        {
-          "correta": false,
-          "texto": "80 km/h"
-        },
-        {
-          "correta": false,
-          "texto": "82,4km/h"
-        }
-      ]
-    }
-  },
-  {
-    "simuladoquest": {
-      "title": "O ponto em torno do qual um corpo estÃ¡ estaticamente equilibrado Ã© denominado:",
-      "respostas": [
-        {
-          "correta": false,
-          "texto": "centro de pressÃ£o (CP)"
-        },
-        {
-          "correta": true,
-          "texto": "centro de gravidade (CG)"
-        },
-        {
-          "correta": false,
-          "texto": "ponto de traÃ§Ã£o (PT)"
-        },
-        {
-          "correta": false,
-          "texto": "coeficiente de sustentaÃ§Ã£o (CL)"
-        }
-      ]
-    }
-  },
-  {
-    "simuladoquest": {
-      "title": "Ã estÃ¡vel uma aeronave que possui:",
-      "respostas": [
-        {
-          "correta": false,
-          "texto": "CG a frente, Ã¡rea a frente do CG maior e diedro positivo"
-        },
-        {
-          "correta": true,
-          "texto": "CG a frente, Ã¡rea superior ao CG maior e diedro positivo"
-        },
-        {
-          "correta": false,
-          "texto": "CG a frente, Ã¡rea inferior ao CG maior e enflechamento positivo"
-        },
-        {
-          "correta": false,
-          "texto": "CG atrÃ¡s e Ã¡rea superior maior ao CG e enflechamento positivo"
-        }
-      ]
-    }
-  }
+      }
+   },
+   {
+      "simuladoquest":{
+         "title":"Sobre a força de sustentação num aerofólio, podemos afirmar que:",
+         "respostas":[
+            {
+               "correta":false,
+               "texto":"ela será sempre positiva"
+            },
+            {
+               "correta":false,
+               "texto":"é uma componente do peso do helicóptero"
+            },
+            {
+               "correta":true,
+               "texto":"será sempre perpendicular ao vento relativo"
+            },
+            {
+               "correta":false,
+               "texto":"será sempre contrária ao peso e vertical"
+            }
+         ]
+      }
+   },
+   {
+      "simuladoquest":{
+         "title":"A resultante aerodinâmica é imaginariamente dividida em duas forças chamadas sustentação (L) e arrasto (D). É correto afirmar que:",
+         "respostas":[
+            {
+               "correta":false,
+               "texto":"o arrasto pode ser positivo, negativo ou nulo"
+            },
+            {
+               "correta":false,
+               "texto":"a sustentação não pode ter valores negativos"
+            },
+            {
+               "correta":true,
+               "texto":"a sustentação é a componente vertical da resultante aerodinâmica"
+            },
+            {
+               "correta":false,
+               "texto":"a tração é a resultante de todas as componentes paralelas ao deslocamento"
+            }
+         ]
+      }
+   },
+   {
+      "simuladoquest":{
+         "title":"O vento aparente que sopra sobre um corpo em movimento na atmosfera, na mesma direção e sentido contrário ao seu movimento, denomina-se vento:",
+         "respostas":[
+            {
+               "correta":false,
+               "texto":"paralelo"
+            },
+            {
+               "correta":true,
+               "texto":"relativo"
+            },
+            {
+               "correta":false,
+               "texto":"contrário"
+            },
+            {
+               "correta":false,
+               "texto":"magnético"
+            }
+         ]
+      }
+   },
+   {
+      "simuladoquest":{
+         "title":"Um automóvel trafega a 80 km/h. Se o vento soprar no sentido contrário a 20 km/h, a velocidade do automóvel em relação ao ar será de:",
+         "respostas":[
+            {
+               "correta":false,
+               "texto":"60 km/h"
+            },
+            {
+               "correta":true,
+               "texto":"100 km/h"
+            },
+            {
+               "correta":false,
+               "texto":"80 km/h"
+            },
+            {
+               "correta":false,
+               "texto":"82,4km/h"
+            }
+         ]
+      }
+   },
+   {
+      "simuladoquest":{
+         "title":"O ponto em torno do qual um corpo está estaticamente equilibrado é denominado:",
+         "respostas":[
+            {
+               "correta":false,
+               "texto":"centro de pressão (CP)"
+            },
+            {
+               "correta":true,
+               "texto":"centro de gravidade (CG)"
+            },
+            {
+               "correta":false,
+               "texto":"ponto de tração (PT)"
+            },
+            {
+               "correta":false,
+               "texto":"coeficiente de sustentação (CL)"
+            }
+         ]
+      }
+   },
+   {
+      "simuladoquest":{
+         "title":"É estável uma aeronave que possui:",
+         "respostas":[
+            {
+               "correta":false,
+               "texto":"CG a frente, área a frente do CG maior e diedro positivo"
+            },
+            {
+               "correta":true,
+               "texto":"CG a frente, área superior ao CG maior e diedro positivo"
+            },
+            {
+               "correta":false,
+               "texto":"CG a frente, área inferior ao CG maior e enflechamento positivo"
+            },
+            {
+               "correta":false,
+               "texto":"CG atrás e área superior maior ao CG e enflechamento positivo"
+            }
+         ]
+      }
+   }
 ]

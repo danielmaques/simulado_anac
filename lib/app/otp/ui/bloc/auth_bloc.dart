@@ -20,9 +20,13 @@ class AuthBloc extends IAuthBloc {
   }
 
   Future<void> _checkUserHash() async {
-    final userHash = await UserHash.getUserHash();
+    String? userHash = await UserHash.getUserHash();
+    assert(() {
+      userHash = '7v7KQ06mK3cRP8IyPqxbH7IIE863';
+      return true;
+    }());
 
-    if (userHash != null && userHash.isNotEmpty) {
+    if (userHash != null && userHash!.isNotEmpty) {
       Modular.to.pushReplacementNamed('/home/');
     }
   }

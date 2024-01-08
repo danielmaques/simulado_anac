@@ -19,7 +19,11 @@ class GetUserBloc extends IGetUserBloc {
   Future<void> getUserData() async {
     emit(const LoadingState());
     try {
-      final userHash = await UserHash.getUserHash();
+      String? userHash = await UserHash.getUserHash();
+      assert(() {
+        userHash = '7v7KQ06mK3cRP8IyPqxbH7IIE863';
+        return true;
+      }());
       final result = await _getUserRepository.getUserData(userHash!);
       emit(SuccessState(result.getSuccessData));
     } catch (e) {

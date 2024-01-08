@@ -54,7 +54,10 @@ class _LatestSimulationsState extends State<LatestSimulations> {
           children: [
             Text(
               '${widget.title} - $state',
-              style: Theme.of(context).textTheme.bodyMedium,
+              style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                  color: state == 'Aprovado'
+                      ? const Color(0xFF34D287)
+                      : const Color(0xFFF55150)),
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.end,

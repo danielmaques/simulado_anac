@@ -2,6 +2,7 @@ import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:lottie/lottie.dart';
+import 'package:simulados_anac/app/punctuation/ui/bloc/user_pontuation_bloc.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../data/model/answer_model.dart';
@@ -28,6 +29,7 @@ class PunctuationPage extends StatefulWidget {
 class _PunctuationPageState extends State<PunctuationPage>
     with SingleTickerProviderStateMixin {
   late ISaveBloc _bloc;
+  late IUserPunctuationBloc _userPunctuationBloc;
   late AnimationController controller;
 
   int get correctAnswersCount {
@@ -54,6 +56,7 @@ class _PunctuationPageState extends State<PunctuationPage>
   void initState() {
     super.initState();
     _bloc = Modular.get<ISaveBloc>();
+    _userPunctuationBloc = Modular.get<IUserPunctuationBloc>();
     controller = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 3),
@@ -237,6 +240,10 @@ class _PunctuationPageState extends State<PunctuationPage>
                       subject: widget.type,
                       date: DateTime.now(),
                     ),
+                  );
+                  _userPunctuationBloc.getUserPunctuation(
+                    category: widget.type,
+                    isApproved: correctAnswersPercentage >= 70 ? true : false,
                   );
                 },
               ),
