@@ -76,13 +76,6 @@ class _LatestSimulationsState extends State<LatestSimulations> {
                       .bodySmall!
                       .copyWith(color: const Color(0xFFF55150)),
                 ),
-                Text(
-                  'Não respondidas ${widget.notAnswered}',
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodySmall!
-                      .copyWith(color: const Color(0xFFFEBB3B)),
-                ),
               ],
             ),
           ],

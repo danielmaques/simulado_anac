@@ -1,217 +1,152 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
-class BarChartSample2 extends StatefulWidget {
-  const BarChartSample2({super.key});
-  final Color leftBarColor = const Color(0xFF34D287);
-  final Color rightBarColor = const Color(0xFFF55150);
+class PieChartSample2 extends StatefulWidget {
+  const PieChartSample2({
+    super.key,
+    required this.approved,
+    required this.disapproved,
+  });
+
+  final int approved;
+  final int disapproved;
+
   @override
-  State<StatefulWidget> createState() => BarChartSample2State();
+  State<StatefulWidget> createState() => PieChart2State();
 }
 
-class BarChartSample2State extends State<BarChartSample2> {
-  final double width = 7;
-
-  late List<BarChartGroupData> rawBarGroups;
-  late List<BarChartGroupData> showingBarGroups;
-
-  int touchedGroupIndex = -1;
-
-  @override
-  void initState() {
-    super.initState();
-    final barGroup1 = makeGroupData(0, 5, 12);
-    final barGroup2 = makeGroupData(1, 16, 12);
-    final barGroup3 = makeGroupData(2, 18, 5);
-    final barGroup4 = makeGroupData(3, 20, 16);
-    final barGroup5 = makeGroupData(4, 17, 6);
-    final barGroup6 = makeGroupData(5, 19, 1.5);
-    final barGroup7 = makeGroupData(6, 10, 1.5);
-
-    final items = [
-      barGroup1,
-      barGroup2,
-      barGroup3,
-      barGroup4,
-      barGroup5,
-      barGroup6,
-      barGroup7,
-    ];
-
-    rawBarGroups = items;
-
-    showingBarGroups = rawBarGroups;
-  }
+class PieChart2State extends State<PieChartSample2> {
+  int touchedIndex = -1;
 
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 1,
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Center(
-              child: Text(
-                'Ultimos simulados',
-                style: Theme.of(context).textTheme.displaySmall,
-              ),
-            ),
-            const SizedBox(
-              height: 38,
-            ),
-            Expanded(
-              child: BarChart(
-                BarChartData(
-                  maxY: 20,
-                  barTouchData: BarTouchData(
-                    touchTooltipData: BarTouchTooltipData(
-                      tooltipBgColor: Colors.grey,
-                      getTooltipItem: (a, b, c, d) => null,
-                    ),
-                    touchCallback: (FlTouchEvent event, response) {
-                      if (response == null || response.spot == null) {
-                        setState(() {
-                          touchedGroupIndex = -1;
-                          showingBarGroups = List.of(rawBarGroups);
-                        });
+    return SizedBox(
+      height: 160,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          AspectRatio(
+            aspectRatio: 1,
+            child: PieChart(
+              PieChartData(
+                pieTouchData: PieTouchData(
+                  touchCallback: (FlTouchEvent event, pieTouchResponse) {
+                    setState(() {
+                      if (!event.isInterestedForInteractions ||
+                          pieTouchResponse == null ||
+                          pieTouchResponse.touchedSection == null) {
+                        touchedIndex = -1;
                         return;
                       }
-
-                      touchedGroupIndex = response.spot!.touchedBarGroupIndex;
-
-                      setState(() {
-                        if (!event.isInterestedForInteractions) {
-                          touchedGroupIndex = -1;
-                          showingBarGroups = List.of(rawBarGroups);
-                          return;
-                        }
-                        showingBarGroups = List.of(rawBarGroups);
-                        if (touchedGroupIndex != -1) {
-                          var sum = 0.0;
-                          for (final rod
-                              in showingBarGroups[touchedGroupIndex].barRods) {
-                            sum += rod.toY;
-                          }
-                          final avg = sum /
-                              showingBarGroups[touchedGroupIndex]
-                                  .barRods
-                                  .length;
-
-                          showingBarGroups[touchedGroupIndex] =
-                              showingBarGroups[touchedGroupIndex].copyWith(
-                            barRods: showingBarGroups[touchedGroupIndex]
-                                .barRods
-                                .map((rod) {
-                              return rod.copyWith(toY: avg);
-                            }).toList(),
-                          );
-                        }
-                      });
-                    },
-                  ),
-                  titlesData: FlTitlesData(
-                    show: true,
-                    rightTitles: const AxisTitles(
-                      sideTitles: SideTitles(showTitles: false),
-                    ),
-                    topTitles: const AxisTitles(
-                      sideTitles: SideTitles(showTitles: false),
-                    ),
-                    bottomTitles: AxisTitles(
-                      sideTitles: SideTitles(
-                        showTitles: true,
-                        getTitlesWidget: bottomTitles,
-                        reservedSize: 42,
-                      ),
-                    ),
-                    leftTitles: AxisTitles(
-                      sideTitles: SideTitles(
-                        showTitles: true,
-                        reservedSize: 28,
-                        interval: 1,
-                        getTitlesWidget: leftTitles,
-                      ),
-                    ),
-                  ),
-                  borderData: FlBorderData(
-                    show: false,
-                  ),
-                  barGroups: showingBarGroups,
-                  gridData: const FlGridData(show: false),
+                      touchedIndex =
+                          pieTouchResponse.touchedSection!.touchedSectionIndex;
+                    });
+                  },
+                ),
+                borderData: FlBorderData(
+                  show: false,
+                ),
+                sectionsSpace: 0,
+                centerSpaceRadius: 40,
+                sections: showingSections(
+                  context: context,
+                  approveds: widget.approved,
+                  disapproveds: widget.disapproved,
                 ),
               ),
             ),
-            const SizedBox(
-              height: 12,
+          ),
+          const SizedBox(width: 10),
+          SizedBox(
+            height: 200,
+            width: MediaQuery.of(context).size.width * 0.3,
+            child: Stack(
+              children: [
+                Positioned(
+                  top: 50,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Container(
+                            height: 10,
+                            width: 10,
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Color(0xFF34D287),
+                            ),
+                          ),
+                          const SizedBox(width: 5),
+                          Text(
+                            'Aprovado',
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Container(
+                            height: 10,
+                            width: 10,
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Color(0xFFF55150),
+                            ),
+                          ),
+                          const SizedBox(width: 5),
+                          Text(
+                            'Reprovado',
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
 
-  Widget leftTitles(double value, TitleMeta meta) {
-    var style = Theme.of(context)
-        .textTheme
-        .bodySmall!
-        .copyWith(color: Theme.of(context).primaryColor);
-    String text;
-    if (value == 0) {
-      text = '0';
-    } else if (value == 5) {
-      text = '5';
-    } else if (value == 10) {
-      text = '10';
-    } else if (value == 15) {
-      text = '15';
-    } else if (value == 20) {
-      text = '20';
-    } else {
-      return Container();
-    }
-    return SideTitleWidget(
-      axisSide: meta.axisSide,
-      space: 0,
-      child: Text(text, style: style),
-    );
-  }
+  List<PieChartSectionData> showingSections({
+    required BuildContext context,
+    required int approveds,
+    required int disapproveds,
+  }) {
+    int approved = approveds;
+    int disapproved = disapproveds;
+    int total = approved + disapproved;
 
-  Widget bottomTitles(double value, TitleMeta meta) {
-    final now = DateTime.now();
-    final titles = List<String>.generate(17, (index) {
-      final date = now.subtract(Duration(days: index + 1));
-      return DateFormat('dd/MM').format(date);
-    }).reversed.toList();
+    double approvedPercentage = (approved / total) * 100;
+    double disapprovedPercentage = (disapproved / total) * 100;
 
-    final Widget text = Text(titles[value.toInt()],
-        style: Theme.of(context).textTheme.bodySmall);
-
-    return SideTitleWidget(
-      axisSide: meta.axisSide,
-      space: 16, //margin top
-      child: text,
-    );
-  }
-
-  BarChartGroupData makeGroupData(int x, double y1, double y2) {
-    return BarChartGroupData(
-      barsSpace: 4,
-      x: x,
-      barRods: [
-        BarChartRodData(
-          toY: y1,
-          color: widget.leftBarColor,
-          width: width,
-        ),
-        BarChartRodData(
-          toY: y2,
-          color: widget.rightBarColor,
-          width: width,
-        ),
-      ],
-    );
+    return List.generate(2, (i) {
+      const radius = 30.0;
+      switch (i) {
+        case 0:
+          return PieChartSectionData(
+            color: const Color(0xFF34D287),
+            value: approvedPercentage,
+            title: '${approvedPercentage.toStringAsFixed(1)}%',
+            radius: radius,
+            titleStyle: Theme.of(context).textTheme.bodyMedium,
+          );
+        case 1:
+          return PieChartSectionData(
+            color: const Color(0xFFF55150),
+            value: disapprovedPercentage,
+            title: '${disapprovedPercentage.toStringAsFixed(1)}%',
+            radius: radius,
+            titleStyle: Theme.of(context).textTheme.bodyMedium,
+          );
+        default:
+          throw Error();
+      }
+    });
   }
 }

@@ -1,4 +1,4 @@
-import 'package:firebase_database/firebase_database.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:simulados_anac/core/errors/base_error.dart';
 
 import '../../../../core/result_wrapper/result_wrapper.dart';
@@ -12,7 +12,7 @@ abstract class IUserPunctuationDatasource {
 }
 
 class UserPunctuationDatasource implements IUserPunctuationDatasource {
-  final firebase = FirebaseDatabase.instance.ref();
+  final FirebaseFirestore firebase = FirebaseFirestore.instance;
 
   @override
   Future<Result> getUserPunctuation({
@@ -21,25 +21,19 @@ class UserPunctuationDatasource implements IUserPunctuationDatasource {
     required String uid,
   }) async {
     try {
-      DatabaseEvent snapshot = await firebase.child('users/$uid').once();
-      Map<dynamic, dynamic> values = snapshot.snapshot.value as Map;
+      DocumentSnapshot snapshot =
+          await firebase.collection('users').doc(uid).get();
+      Map<String, dynamic> values = snapshot.data() as Map<String, dynamic>;
       int approvedCount = values['approvedCount'] ?? 0;
       int disapprovedCount = values['disapprovedCount'] ?? 0;
 
-      DatabaseEvent approvedListSnapshot =
-          await firebase.child('users/$uid/approvedList').once();
-      List<dynamic> approvedList = approvedListSnapshot.snapshot.value is List
-          ? List<dynamic>.from(
-              approvedListSnapshot.snapshot.value as List<dynamic>)
+      List<dynamic> approvedList = values['approvedList'] is List
+          ? List<dynamic>.from(values['approvedList'] as List<dynamic>)
           : [];
 
-      DatabaseEvent disapprovedListSnapshot =
-          await firebase.child('users/$uid/disapprovedList').once();
-      List<dynamic> disapprovedList =
-          disapprovedListSnapshot.snapshot.value is List
-              ? List<dynamic>.from(
-                  disapprovedListSnapshot.snapshot.value as List<dynamic>)
-              : [];
+      List<dynamic> disapprovedList = values['disapprovedList'] is List
+          ? List<dynamic>.from(values['disapprovedList'] as List<dynamic>)
+          : [];
 
       var now = DateTime.now().toIso8601String();
 
@@ -51,7 +45,7 @@ class UserPunctuationDatasource implements IUserPunctuationDatasource {
         disapprovedList.add(now);
       }
 
-      await firebase.child('users/$uid').set({
+      await firebase.collection('users').doc(uid).update({
         'approvedCount': approvedCount,
         'disapprovedCount': disapprovedCount,
         'approvedList': approvedList,
